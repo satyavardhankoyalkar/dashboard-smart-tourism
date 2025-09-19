@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
+import PoliceHeader from "@/components/PoliceHeader";
+import PoliceSidebar from "@/components/PoliceSidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +27,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <PoliceHeader />
+        <div className="bg-[#0b1220] text-white/90 min-h-[calc(100dvh-56px)]">
+          <div className="max-w-6xl mx-auto flex">
+            <PoliceSidebar />
+            <main className="flex-1 px-4 py-6">{children}</main>
+          </div>
+        </div>
       </body>
     </html>
   );
